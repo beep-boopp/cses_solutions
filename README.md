@@ -1,0 +1,1 @@
+So basically wanna keep track of my cses journey....maybe some day people can use this repo to navigate through their own journey. It is lowkey hard to find cses solutions so maybe this could be helpful.......(im talking to the walls as i type this lowkey)
