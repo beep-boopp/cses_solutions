@@ -5,53 +5,32 @@ using namespace std;
 
 void solve()
 {
+
+
     ll n,m;
     cin>>n>>m;
-    vector<ll> ticket_prices(n);
-    for(ll i =0;i<n;i++) cin>>ticket_prices[i];
-    vector<ll> customer_offers(m);
-    for(ll i =0;i<m;i++) cin>>customer_offers[i];
-
-    //binary search to place customer_offer to right of ticket_price that it can buy
-    //if cant be placed at right return -1
-    sort(ticket_prices.begin(), ticket_prices.end());
-    //binary search
-    
-    for(ll i =0;i<m;i++)
+    multiset<ll> tickets;
+    ll x;
+    for(ll i =0;i<n;i++)
     {
-        ll offer=customer_offers[i];
-        ll left=0;
-        ll right=n-1;
-        ll ans=-1;
-        while(left<=right)
+        cin>>x;
+        tickets.insert(x);
+    }
+    for(int i =0;i<m;i++)
+    {
+        cin>>x;
+        auto it=tickets.upper_bound(x);
+        if(it==tickets.begin())
         {
-            ll mid=left+(right-left)/2;
-           if(ticket_prices[mid]<=offer)
-           {
-                ans=mid;
-                left=mid+1;
-              }
-              else
-              {
-                right=mid-1;
-              }
-           }
-           if(ans==-1)
-           {
             cout<<-1<<"\n";
-           }
-           else
-           {
-            cout<<ticket_prices[ans]<<"\n";
-            ticket_prices.erase(ticket_prices.begin()+ans);
-
-
         }
-    
-
-    };
+        else{
+            it--;
+            cout<<*it<<"\n";
+            tickets.erase(it);
+        }
+    }
 }
-
 
 int main()
 {
